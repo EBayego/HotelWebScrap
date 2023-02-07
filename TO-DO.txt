@@ -1,0 +1,6 @@
+Scrap all the important information
+Parameter configuration (including money simbol for each country)
+
+Start scrapping from other websites the same parameters
+
+Start front-end

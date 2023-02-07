@@ -15,6 +15,8 @@ blocksName = soup.find_all("div", {"class": "fcab3ed991 a23c043802"})
 blocksLink = soup.find_all("a", {"data-testid": "title-link"})
 blocksAddress = soup.find_all("span", {"data-testid": "address"})
 blocksDistanceFromCenter = soup.find_all("span", {"data-testid": "distance"})
+blocksPuntuation = soup.find_all("div", {"class": "b5cd09854e d10a6220b4"})
+blocksPrice = soup.find_all("span", {"data-testid": "price-and-discounted-price"})
 hotels = []
 
 for name in blocksName:
@@ -42,7 +44,22 @@ for distance in blocksDistanceFromCenter:
         hotels[i]["distanceFromCenter"] = hasDistance
         i += 1
 
-print (hotels)
+i = 0
+for puntuation in blocksPuntuation:
+    hasPuntuation = re.search('>(.*)<', str(puntuation)).group(1)
+    if hasPuntuation:
+        hotels[i]["puntuation"] = hasPuntuation
+        print(hasPuntuation)
+        i += 1
 
-#almacenar en una lista de diccionarios
-#print(names)
+i = 0
+for price in blocksPrice:
+    hasPrice = re.search('>(.*)<', str(price)).group(1).replace("€\xa0", "")
+    if hasPrice:
+        hotels[i]["price"] = hasPrice
+        print(hasPrice)
+        i += 1
+
+
+
+print (hotels)
